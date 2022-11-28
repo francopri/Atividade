@@ -1,0 +1,55 @@
+[
+    {
+        "id": "f3c8c7e6-449b-4903-bfa8-4a3bc7eb8f6c",
+        "documentName": "Licitação Compras - Notebooks",
+        "status": "Em andamento",
+        "details": "Processo de licitação para compra de notebooks",
+        "dateInit": "30/11/2022",
+        "comments": [
+            "Processo em aberto e sem previsão de conclusão"
+        ],
+        "dateEnd": "",
+        "setor": "tre"
+    },
+    {
+        "id": "49d2b48e-e890-4dd1-b300-a3a35ebad6da",
+        "documentName": "Licitação Compras - Cadeiras",
+        "status": "Finalizado",
+        "details": "Processo de licitação para compra de cadeiras",
+        "dateInit": "30/10/2022",
+        "comments": [
+            "Licitação deserta"
+        ],
+        "dateEnd": "",
+        "setor": "tre"
+    },
+    {
+        "id": "767e578b-e8b7-4367-8194-d6350a88d813",
+        "documentName": "Licitação Compras - BEBEDOUROS",
+        "status": "Em andamento",
+        "details": "Processo de licitação para compra de cadeiras",
+        "dateInit": "30/09/2022",
+        "comments": [
+            "Licitação em andamento",
+            "processo na CONJUR"
+        ],
+        "dateEnd": "",
+        "setor": "trj"
+    },
+    {
+        "id": "ae3e770d-904c-4658-90bd-094bbf09c21b"
+    },
+    {
+        "documentName": "Licitação Compras - BEBEDOUROS",
+        "status": "Finalizado",
+        "details": "Processo de licitação para compra de cadeiras",
+        "dateInit": "30/09/2022",
+        "comments": [
+            "Licitação em andamento",
+            "processo na CONJUR"
+        ],
+        "dateEnd": "",
+        "setor": "trj",
+        "id": "ba19b5bf-cff8-41da-b785-d8d9e29729aa"
+    }
+]
