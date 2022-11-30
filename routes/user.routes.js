@@ -5,7 +5,7 @@ const userRoute = express.Router();
 
 const processos = [
     {
-        id: randomUUID(),
+        id: "96e2215b-c406-4326-9167-014b4d54bccd",
         documentName: "Licitação Compras - Notebooks",
         status: "Em andamento",
         details: "Processo de licitação para compra de notebooks",
@@ -50,25 +50,40 @@ userRoute.get("/all", (req, res) => {
     return res.status(200).json(processos);
 });
 
-
 userRoute.get("/processo/:id", (req, res) => {
 
     const { id } = req.params;
     const processoById = processos.find((processo) => processo.id === id);
+
+    if (!processo) {
+        return res.status(404).json({ message: "Processo não encontrado." })
+    }
+
     return res.status(200).json(processoById);
-
 });
-
 
 userRoute.get("/status/open", (req, res) => {
 
     const statusOpen = processos.filter((processo) => processo.status === "Em andamento");
+    
+    if(!statusOpen.length){
+        return res.status(404).json({
+            message: "Nenhum processo encontrado."
+        })
+    }
+    
     return res.status(200).json(statusOpen);
 
 });
 
 userRoute.get("/status/close", (req, res) => {
     const statusClose = processos.filter((processo) => processo.status === "Finalizado");
+    if(!statusClose.length){
+        return res.status(404).json({
+            message: "Nenhum processo encontrado."
+        })
+    }
+    
     return res.status(200).json(statusClose);
 })
 
@@ -83,6 +98,12 @@ userRoute.get("/setor/:nomeSetor", (req, res) => {
 
     const { nomeSetor } = req.params;
     const processosSetor = processos.filter((processo) => processo.setor === nomeSetor);
+
+    if(!processosSetor.length){
+        return res.status(404).json({
+            message: "Nenhum processo encontrado."
+        })
+    }
     return res.status(200).json(processosSetor);
 })
 
@@ -92,7 +113,41 @@ userRoute.post("/create", (req, res) => {
     processo.id = randomUUID();
     processos.push(processo);
 
-    return res.status(201).json(processos);
+    return res.status(201).json(
+        {
+            message: "Processo criado!",
+            processo,
+        }
+    )
+});
+
+// PUT - EDITAR
+
+userRoute.put("/edit/:id", (req, res) => {
+    const { id } = req.params;
+
+    const processo = processos.find((processo) => processo.id === id);
+    const index = processos.indexOf(processo);
+
+    processos[index] = {
+        ...processo,
+        ...req.body,
+    }
+
+    return res.status(200).json(processos[index]);
+});
+
+userRoute.put("/addComment/:id", (req, res) => {
+    const { id } = req.params;
+    const processo = processos.find((processo) => processo.id === id);
+
+    console.log(id, processo);
+
+
+
+    processo.comments.push(req.body.comment);
+
+    return res.status(201).json(processo);
 });
 
 userRoute.delete("/delete/:id", (req, res) => {
@@ -116,22 +171,6 @@ userRoute.delete("/delete/:id", (req, res) => {
 
 
 });
-
-// PUT - EDITAR
-
-userRoute.put("/edit/:id", (req, res) => {
-    const { id } = req.params;
-
-    const processo = processos.find((processo) => processo.id === id);
-    const index = processos.indexOf(processo);
-
-    processos[index] = {
-        ...processo,
-        ...req.body,
-    }
-
-    return res.status(200).json(processos[index]);
-})
 
 userRoute.get("/random", (req, res) => {
 
